@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <title>Генератор на Сертификати</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Центриране и премахване на излишното бяло място */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: #2c2c2c; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .admin-panel {
+            background: white; 
+            padding: 15px; 
+            border-radius: 10px; 
+            margin-bottom: 20px;
+            display: flex; 
+            gap: 15px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            z-index: 100;
+        }
+
+        #certificate-print-area {
+            width: 1123px; /* А4 Landscape */
+            height: 794px;
+            position: relative;
+            background-image: url('Сертификат.png'); 
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: white;
+        }
+
+        .name-overlay {
+            position: absolute;
+            top: 51%; /* Регулирайте това, за да качите/свалите името */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85%;
+            text-align: center;
+            font-family: 'Great Vibes', cursive;
+            font-size: 100px; /* Намален шрифт, за да не пречи на надписите */
+            color: #1a3a5a;
+            white-space: nowrap;
+        }
+
+        input { padding: 10px; width: 300px; border: 1px solid #003366; border-radius: 5px; }
+        button { padding: 10px 20px; cursor: pointer; border-radius: 5px; border: none; font-weight: bold; background: #27ae60; color: white; }
+
+        @media print {
+            .admin-panel { display: none; }
+            body { background: white; }
+            #certificate-print-area { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-panel">
+        <input type="text" id="nameInput" placeholder="Име Фамилия..." oninput="document.getElementById('display-name').innerText = this.value || 'Име Фамилия'">
+        <button onclick="window.print()">🖨️ ЗАПАЗИ КАТО ПДФ / ПЕЧАТ</button>
+    </div>
+
+    <div id="certificate-print-area">
+        <div id="display-name" class="name-overlay">Име Фамилия</div>
+    </div>
+
+</body>
+</html>
